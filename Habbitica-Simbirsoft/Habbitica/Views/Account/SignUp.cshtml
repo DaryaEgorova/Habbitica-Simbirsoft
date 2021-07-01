@@ -1,0 +1,109 @@
+﻿@model Habbitica.Models.SignUpViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Sign Up | Maganizer</title>
+    <meta charset="UTF-8">
+    <link rel="icon" href="~/images/cropped-01-progress-32x32.gif" sizes="32x32">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="~/fonts/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="~/fonts/icon-font.min.css">
+
+    <link rel="stylesheet" type="text/css" href="~/css/animate.css">
+
+    <link rel="stylesheet" type="text/css" href="~/css/hamburgers.min.css">
+
+    <link rel="stylesheet" type="text/css" href="~/css/animsition.min.css">
+
+    <link rel="stylesheet" type="text/css" href="~/css/select2.min.css">
+
+    <link rel="stylesheet" type="text/css" href="~/css/daterangepicker.css">
+
+    <link rel="stylesheet" type="text/css" href="~/css/util.css">
+
+    <link rel="stylesheet" type="text/css" href="~/css/login.css">
+
+</head>
+
+<body>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="long-wrap-login100">
+                <div class="login100-form-title"
+                     style="background-image: url(images/logo.svg); background-size: auto;">
+                    <span class="login100-form-title-1">
+                        <ul class="links">
+                            <li class="signin-inactive">
+                                <a asp-controller="Account" asp-action="SignIn" class="btn">
+                                    <h2>Sign in</h2>
+                                </a>
+                            </li>
+                            <li class="signup-active">
+                                <a asp-controller="Account" asp-action="SignUp" class="btn">
+                                    <h2>Sign up</h2>
+                                </a>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
+
+                        <form class="login100-form validate-form" action="SignUp" method="post">
+                            <div class="wrap-input100 validate-input m-b-26">
+                                <label asp-for="@Model.Username" class="label-input100"></label>
+                                <input asp-for="@Model.Username" class="input100"
+                                       placeholder="Enter your username">
+                                <span class="focus-input100"></span>
+                            </div>
+                            <div class="wrap-input100 validate-input m-b-26">
+                                <label asp-for="@Model.Email" class="label-input100"></label>
+                                <input asp-for="@Model.Email" class="input100"
+                                       placeholder="Enter your email address">
+                                <span class="focus-input100"></span>
+                            </div>
+                            <div class="wrap-input100 validate-input m-b-26">
+                                <label asp-for="@Model.Password" class="label-input100"></label>
+                                <input asp-for="@Model.Password" class="input100"
+                                       placeholder="Enter your password">
+                                <span class="focus-input100"></span>
+                            </div>
+                            <div class="wrap-input100 validate-input m-b-26">
+                                <label asp-for="@Model.ConfirmPassword" class="label-input100"></label>
+                                <input asp-for="@Model.ConfirmPassword" class="input100"
+                                       placeholder="Enter your password again">
+                                <span class="focus-input100"></span>
+                            </div>
+                            @if (ViewData.ModelState.Any(x => x.Value.Errors.Any()))
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    <a class="close" data-dismiss="alert"></a>
+                                    @foreach (var modelError in Html.ViewData.ModelState.SelectMany(keyValuePair => keyValuePair.Value.Errors))
+                                    {
+                                        <p>@modelError.ErrorMessage</p>
+                                    }
+                                </div>
+                            }
+                            <div class="container-login100-form-btn">
+                                <button type="submit" id="btnSignUp" class="sign-up-btn">
+                                    Sign Up
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+      
+        </div>
+    </div>
+
+</body>
+
+</html>

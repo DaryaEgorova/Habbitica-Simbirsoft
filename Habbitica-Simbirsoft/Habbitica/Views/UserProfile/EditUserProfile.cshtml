@@ -1,0 +1,200 @@
+﻿@model Habbitica.Models.EditUserProfileViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Edit your profile | Habbitica";
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/userProfile.css">
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <form method="post" enctype="multipart/form-data" asp-action="EditProfile">
+            <div class="row gutters">
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="account-settings">
+                                <div class="user-profile">
+                                    <div class="user-avatar">                                     
+                                        @if (Model.OldAvatar == null)
+                                        {
+                                            <img id="changeAvatar" src="~/images/avatar7.png">
+                                        }
+                                        else
+                                        {
+                                            <img id="changeAvatar" src="data:image/jpeg; base64, @(Convert.ToBase64String(Model.OldAvatar))">
+                                        }
+                                    <div class="file-input">
+                                        <input asp-for="NewAvatar" type="file" id="fileinput" class="file">
+                                        <label for="fileinput">Select file</label>
+                                    </div>
+                                    </div>
+                                    <h5 class="user-name">@User.Identity.Name</h5>
+                                </div>
+                                <div>
+                                    <h5>About</h5>
+                                    @if (Model.About == null)
+                                    {
+                                        <textarea asp-for="About" class="form-control"></textarea>
+                                    }
+                                    else
+                                    {
+                                        <textarea asp-for="About" class="form-control">@Model.About</textarea>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="row gutters">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h6 class="mb-2 text-primary">Personal Details</h6>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="fullName">Full Name</label>
+                                        @if (Model.FirstName == null)
+                                        {
+                                            <input asp-for="FirstName" type="text" class="form-control" id="fullName" placeholder="Enter your first name">
+
+                                        }
+                                        else
+                                        {
+                                            <input asp-for="FirstName" value="@Model.FirstName" type="text" class="form-control" id="fullName" placeholder="Enter your first name">
+                                        }
+
+                                        @if (Model.LastName == null)
+                                        {
+                                            <input asp-for="LastName" type="text" class="form-control" id="fullName" placeholder="Enter your last name">
+                                        }
+                                        else
+                                        {
+                                            <input asp-for="LastName" value="@Model.LastName" type="text" class="form-control" id="fullName" placeholder="Enter your last name">
+                                        }
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="phone">Email for contacts</label>
+                                        @if (Model.EmailForContacts == null)
+                                        {
+                                            <input asp-for="EmailForContacts" type="text" class="form-control" id="phone" placeholder="Enter your contact email address">
+                                        }
+                                        else
+                                        {
+                                            <input asp-for="EmailForContacts" value="@Model.EmailForContacts" type="text" class="form-control" id="phone" placeholder="Enter your contact email address">
+                                        }
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="website">Website URL</label>
+                                        @if (Model.WebSiteUrl == null)
+                                        {
+                                            <input asp-for="WebSiteUrl" type="url" class="form-control" id="website" placeholder="Website url">
+                                        }
+                                        else
+                                        {
+                                            <input asp-for="WebSiteUrl" value="@Model.WebSiteUrl" type="url" class="form-control" id="website" placeholder="Website url">
+                                        }
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gutters">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h6 class="mt-3 mb-2 text-primary">Address</h6>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="Street">Street</label>
+                                        @if (Model.Street == null)
+                                        {
+                                            <input asp-for="Street" class="form-control" id="Street" placeholder="Enter Street">
+                                        }
+                                        else
+                                        {
+                                            <input asp-for="Street" value="@Model.Street" class="form-control" id="Street" placeholder="Enter Street">
+                                        }
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="ciTy">City</label>
+                                        @if (Model.City == null)
+                                        {
+                                            <input asp-for="City" class="form-control" id="ciTy" placeholder="Enter City">
+                                        }
+                                        else
+                                        {
+                                            <input asp-for="City" value="@Model.City" class="form-control" id="ciTy" placeholder="Enter City">
+                                        }
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="country">Country</label>
+                                        @if (Model.Country == null)
+                                        {
+                                            <input asp-for="Country" type="text" class="form-control" id="country" placeholder="Enter Country">
+                                        }
+                                        else
+                                        {
+                                            <input asp-for="Country" value="@Model.Country" type="text" class="form-control" id="country" placeholder="Enter Country">
+                                        }
+
+                                    </div>
+                                </div>
+
+                                @if (ViewData.ModelState.Any(x => x.Value.Errors.Any()))
+                                {
+                                    <div class="alert alert-danger" role="alert">
+                                        <a class="close" data-dismiss="alert"></a>
+                                        @foreach (var modelError in Html.ViewData.ModelState.SelectMany(keyValuePair => keyValuePair.Value.Errors))
+                                        {
+                                            <p>@modelError.ErrorMessage</p>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                            <div class="row gutters">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="text-right">
+                                        <a asp-controller="UserProfile" asp-action="GetMyProfile"><button type="button" id="submit" name="submit"
+                                                class="btn btn-secondary">
+                                            Cancel
+                                        </button></a>
+                                        <button asp-action="EditProfile" type="submit" id="submit" name="submit"
+                                                class="btn btn-primary">
+                                            Update
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/scripts.js"></script>
+</body>
+
+</html>
+
