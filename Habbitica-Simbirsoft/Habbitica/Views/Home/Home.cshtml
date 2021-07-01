@@ -36,11 +36,11 @@
                         <div class="top-content">
                             <div class="height-sizer"></div>
                             <div class="post-content">
-                                <a asp-controller="Post" asp-action="GetPost" asp-route-name="@x.Name">
+                                <a @* asp-controller="Post" asp-action="GetPost" *@ asp-route-name="@x.Name">
                                     <h2>@x.Name</h2>
                                 </a>
                                 <div class="post-meta-data">
-                                    <span class="posted-by">By</span> <a asp-controller="UserProfile" asp-action="GetProfile"</a>
+                                    <span class="posted-by">By</span> <a asp-controller="UserProfile" asp-action="GetProfile"></a>
 
 
                                 </div>
