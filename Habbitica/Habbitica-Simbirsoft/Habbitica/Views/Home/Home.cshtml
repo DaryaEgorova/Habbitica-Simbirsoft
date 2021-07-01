@@ -1,0 +1,55 @@
+﻿@page
+@model Habbitica.Models.HomeViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Home | Habbitica";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="sidebar col-2">
+            <div class="date-time">
+                <p class="date">Сегодня @(DateTime.Now.ToShortDateString())</p>
+                <p class="time">Время @(DateTime.Now.TimeOfDay)</p>
+            </div>
+            <ul class="category-tasks">
+                <li class="category-tasks__item category-tasks__item-active">
+                    <a href="#">Текущие</a>
+                </li>
+                <li class="category-tasks__item">
+                    <a href="#">Выполненные</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tasks col-8 offset-1">
+            <h1 class="tasks__title">Текущие задачи:</h1>
+            <ul class="task-list">
+
+            </ul>
+        </div>
+        @if (Model != null)
+        {
+            @foreach (var x in Model.PostsSlider)
+            {
+                <div class="item">
+                    <div class="owl-content-slider">
+                        <div class="top-content">
+                            <div class="height-sizer"></div>
+                            <div class="post-content">
+                                <a @* asp-controller="Post" asp-action="GetPost" *@ asp-route-name="@x.Name">
+                                    <h2>@x.Name</h2>
+                                </a>
+                                <div class="post-meta-data">
+                                    <span class="posted-by">By</span> <a asp-controller="UserProfile" asp-action="GetProfile"></a>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
