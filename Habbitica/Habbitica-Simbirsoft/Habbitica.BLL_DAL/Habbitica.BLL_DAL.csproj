@@ -6,6 +6,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="EntityFramework" Version="6.4.4" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0-preview.5.21301.17" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0-preview.5.21301.9" />
       <PackageReference Include="MySql.Data" Version="8.0.25" />
       <PackageReference Include="NetCore" Version="1.0.0" />
       <PackageReference Include="NETCore.MailKit" Version="2.0.3" />
