@@ -91,7 +91,7 @@ namespace Habbitica.Controllers
             var editProfileViewModel = new EditUserProfileViewModel()
             {
                 EmailForContacts = profileInfo.EmailForContacts,
-                WebSiteUrl = profileInfo.WebSiteUrl,
+                FacebookForContacts = profileInfo.FacebookForContacts,
                 Country = profileInfo.Country,
                 City = profileInfo.City,
                 About = profileInfo.About,
@@ -116,7 +116,7 @@ namespace Habbitica.Controllers
                     FirstName = editProfileViewModel.FirstName,
                     LastName = editProfileViewModel.LastName,
                     EmailForContacts = editProfileViewModel.EmailForContacts,
-                    WebSiteUrl = editProfileViewModel.WebSiteUrl,
+                    FacebookForContacts = editProfileViewModel.FacebookForContacts,
                     Country = editProfileViewModel.Country,
                     City = editProfileViewModel.City,
                     About = editProfileViewModel.About,

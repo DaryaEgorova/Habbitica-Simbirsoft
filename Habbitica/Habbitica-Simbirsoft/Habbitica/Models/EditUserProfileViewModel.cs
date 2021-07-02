@@ -18,10 +18,13 @@ namespace Habbitica.Models
         [Display(Name = "Email address")]
         [EmailAddress(ErrorMessage = "Please enter a valid email")]
         public string EmailForContacts { get; set; }
-
+        
+        
         [Required]
         [StringLength(2048)]
-        public string WebSiteUrl { get; set; }
+        public string FacebookForContacts { get; set; }
+
+        
 
         [Required]
         [StringLength(45, ErrorMessage = "Max length - 45")]

@@ -1,17 +1,17 @@
-﻿using Maganizer_Project.DAL.EF;
-using Maganizer_Project.DAL.Entities;
-using Maganizer_Project.DAL.Interfaces;
+﻿using Habbitica.BLL_DAL.EF;
+using Habbitica.BLL_DAL.Entity;
+using Habbitica.BLL_DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Maganizer_Project.DAL.Repositories
+namespace Habbitica.BLL_DAL.Repositories
 {
     public class UserProfileRepository : IProfileRepository
     {
-        private readonly MaganizerContext db;
-        public UserProfileRepository(MaganizerContext context)
+        private readonly HabbiticaContext db;
+        public UserProfileRepository(HabbiticaContext context)
         {
             this.db = context;
         }
@@ -56,10 +56,9 @@ namespace Maganizer_Project.DAL.Repositories
                 userProfile.LastName = item.LastName;
                 userProfile.Country = item.Country;
                 userProfile.City = item.City;
-                userProfile.Street = item.Street;
                 userProfile.About = item.About;
-                userProfile.WebSiteUrl = item.WebSiteUrl;
                 userProfile.EmailForContacts = item.EmailForContacts;
+                userProfile.FacebookForContacts = item.FacebookForContacts;
 
                 if(item.Avatar != null)
                 {

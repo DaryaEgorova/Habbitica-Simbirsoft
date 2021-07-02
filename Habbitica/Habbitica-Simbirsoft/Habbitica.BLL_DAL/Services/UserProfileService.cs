@@ -1,13 +1,15 @@
-﻿using Maganizer_Project.BLL.DTO;
-using Maganizer_Project.BLL.Infrastructure;
-using Maganizer_Project.BLL.Interfaces;
-using Maganizer_Project.DAL.Entities;
-using Maganizer_Project.DAL.Interfaces;
+﻿using Habbitica.BLL_DAL.DTO;
+using Habbitica.BLL_DAL.Infrastructure;
+using Habbitica.BLL_DAL.Interfaces;
+using Habbitica.BLL_DAL.Entity;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Habbitica.BLL_DAL.DTO;
+using Habbitica.BLL_DAL.Entity;
+using Habbitica.BLL_DAL.Interfaces;
 
-namespace Maganizer_Project.BLL.Services
+namespace Habbitica.BLL_DAL.Services
 {
     public class UserProfileService : IUserProfileService
     {
@@ -43,10 +45,9 @@ namespace Maganizer_Project.BLL.Services
                 FirstName = userProfile.FirstName,
                 LastName = userProfile.LastName,
                 EmailForContacts = userProfile.EmailForContacts,
-                WebSiteUrl = userProfile.WebSiteUrl,
+                FacebookForContacts = userProfile.FacebookForContacts,
                 Country = userProfile.Country,
                 City = userProfile.City,
-                Street = userProfile.Street,
                 Avatar = userProfile.Avatar
             };
 
@@ -75,10 +76,9 @@ namespace Maganizer_Project.BLL.Services
                 LastName = editProfileDTO.LastName,
                 Country = editProfileDTO.Country,
                 City = editProfileDTO.City,
-                Street = editProfileDTO.Street,
                 About = editProfileDTO.About,
-                WebSiteUrl = editProfileDTO.WebSiteUrl,
                 EmailForContacts = editProfileDTO.EmailForContacts,
+                FacebookForContacts = editProfileDTO.FacebookForContacts,
                 Avatar = newAvatar,
                 ApplicationUserId = account.Result.Id
             };

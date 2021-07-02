@@ -34,59 +34,6 @@ namespace Habbitica.Controllers
                 PostsSlider = new List<PostForHomeSliderModel>()
             };
 
-            var posts = postService.GetPosts();
-
-            if (posts.Count() != 0)
-            {
-                Random rnd = new Random();
-                int[] usedNumbers = { -1, -1, -1, -1, -1 };
-                int n = usedNumbers.Length;
-                if (posts.Count() < n)
-                {
-                    n = posts.Count();
-                }
-                for (int i = 0; i < n;)
-                {
-                    int number = rnd.Next(0, posts.Count());
-                    if (usedNumbers.Contains(number))
-                    {
-                        continue;
-                    }
-
-                    usedNumbers[i] = number;
-
-                    string tag = "";
-
-                    
-                    homeView.PostsSlider.Add(new PostForHomeSliderModel()
-                    {
-                        Name = posts.ElementAt(number).Name,
-                        PostedOn = posts.ElementAt(number).DateOfCreation,
-                    });
-
-                    
-
-                    i++;
-                }
-
-                posts = posts.OrderByDescending(x => x.DateOfCreation).ToList();
-                homeView.LatestPosts = new List<LatestPostModel>();
-                n = 20;
-                if (posts.Count() < n)
-                {
-                    n = posts.Count();
-                }
-                for(int i=0; i < n; i++)
-                {
-                    homeView.LatestPosts.Add(new LatestPostModel()
-                    {
-                        Name = posts.ElementAt(i).Name,
-                        PostedOn = posts.ElementAt(i).DateOfCreation,
-                      });
-                }
-
-                return View("Home", homeView);
-            }
             return View("Home");
         }
 

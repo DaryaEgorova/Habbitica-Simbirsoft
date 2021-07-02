@@ -1,6 +1,6 @@
 ﻿using Habbitica.BLL_DAL.Entity;
 
-namespace Habbitica.BLL_DAL.Entities
+namespace Habbitica.BLL_DAL.Entity
 {
     public class UserAccount
     {    

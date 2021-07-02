@@ -101,13 +101,13 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="website">Website URL</label>
-                                        @if (Model.WebSiteUrl == null)
+                                        @if (Model.FacebookForContacts == null)
                                         {
-                                            <input asp-for="WebSiteUrl" type="url" class="form-control" id="website" placeholder="Website url">
+                                            <input asp-for="FacebookForContacts" type="url" class="form-control" id="website" placeholder="Website url">
                                         }
                                         else
                                         {
-                                            <input asp-for="WebSiteUrl" value="@Model.WebSiteUrl" type="url" class="form-control" id="website" placeholder="Website url">
+                                            <input asp-for="FacebookForContacts" value="@Model.FacebookForContacts" type="url" class="form-control" id="website" placeholder="Website url">
                                         }
 
 

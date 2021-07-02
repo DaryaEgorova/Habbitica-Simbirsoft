@@ -11,7 +11,6 @@ namespace Habbitica.BLL_DAL.Interfaces
         Task<SignUpResultDTO> CreateUser(SignUpUserDTO signUpUser);
         Task<SignInResultDTO> SignInAsync(SignInUserDTO signInUser);
         Task SignOutAsync();
-        Task<IdentityResult> ConfirmEmail(string userId, string code);
         List<UserInfoDTO> GetInfoUsers();
         void CreateMessageToAdmin(MessageToAdminDTO message);
         List<MessageToAdminDTO> GetMessagesToAdmin();

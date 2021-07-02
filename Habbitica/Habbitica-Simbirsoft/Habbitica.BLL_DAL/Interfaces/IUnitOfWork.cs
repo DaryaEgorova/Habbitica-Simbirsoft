@@ -8,6 +8,8 @@ namespace Habbitica.BLL_DAL.Interfaces
     {
         IAccountRepository Accounts { get; }
         IProfileRepository UserProfiles { get; }
+        IRepository<ToDo> ToDos { get; }
+
       void Save();
     }
 }

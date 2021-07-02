@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Habbitica.BLL_DAL.DTO
 {
-    public class EditPostDTO
+    public class EditToDoDTO
     {
         public string Name { get; set; }
         public string Content { get; set; }

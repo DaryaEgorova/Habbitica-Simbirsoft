@@ -1,14 +1,16 @@
-﻿using Maganizer_Project.BLL.DTO;
-using Maganizer_Project.BLL.Interfaces;
-using Maganizer_Project.DAL.Entities;
-using Maganizer_Project.DAL.Interfaces;
+﻿using Habbitica.BLL_DAL.DTO;
+using Habbitica.BLL_DAL.Interfaces;
+using Habbitica.BLL_DAL.Entity;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.Security.Policy;
 using System.Threading.Tasks;
 using System.Linq;
+using Habbitica.BLL_DAL.DTO;
+using Habbitica.BLL_DAL.Entity;
+using Habbitica.BLL_DAL.Interfaces;
 
-namespace Maganizer_Project.BLL.Services
+namespace Habbitica.BLL_DAL.Services
 {
     public class UserAccountService : IAccountService
     {
@@ -36,7 +38,7 @@ namespace Maganizer_Project.BLL.Services
             SignUpResultDTO resultDTO = new SignUpResultDTO()
             {
                 Result = await DataBase.Accounts.CreateAsync(user)
-            }; 
+            };
 
             if (resultDTO.Result.Succeeded)
             {
@@ -48,16 +50,14 @@ namespace Maganizer_Project.BLL.Services
                 DataBase.UserProfiles.Create(userProfile);
                 DataBase.Save();
 
-                var code = GetEmailVerificationInfo(identityUser.UserName).Result.VerificationCode;
-
-                resultDTO.VerificationCode = code;
                 resultDTO.UserId = identityUser.Id;
                 resultDTO.Email = identityUser.Email;
                 resultDTO.Username = identityUser.UserName;
             }
-            
-            return resultDTO;         
+
+            return resultDTO;
         }
+
         //create now
         public List<UserInfoDTO> GetInfoUsers()
         {
@@ -72,37 +72,19 @@ namespace Maganizer_Project.BLL.Services
                     Username = x.UserName
                 });
             }
+
             return userInfoDTOs;
         }
 
-        public async Task<IdentityResult> ConfirmEmail(string userId, string code)
-        {
-            var user = await DataBase.Accounts.GetById(userId);
-
-            if(user == null)
-            {
-                return null;
-            }
-
-            var result = await DataBase.Accounts.ConfirmEmailAsync(user, code);
-
-            return result;
-        }
 
         public async Task<SignInResultDTO> SignInAsync(SignInUserDTO signInDTO)
         {
-            bool RememberMeBool = false;
-
-            if (signInDTO.RememberMe == "on")
-            {
-                RememberMeBool = true;
-            }
+            bool RememberMeBool = signInDTO.RememberMe == "on";
 
             var result = new SignInResultDTO()
             {
                 SignInResult = await DataBase.Accounts.PasswordSignInAsync(signInDTO.Username, signInDTO.Password,
-                                                               RememberMeBool),
-                EmailConfirmed = DataBase.Accounts.GetByName(signInDTO.Username).Result.EmailConfirmed
+                    RememberMeBool),
             };
 
 
@@ -112,19 +94,6 @@ namespace Maganizer_Project.BLL.Services
         public async Task SignOutAsync()
         {
             await DataBase.Accounts.SignOutAsync();
-        }
-
-        public async Task<EmailVerificationInfoDTO> GetEmailVerificationInfo(string username)
-        {
-            var user = await DataBase.Accounts.GetByName(username);
-            var code = await DataBase.Accounts.GetEmailConfirmationToken(user);
-            return new EmailVerificationInfoDTO()
-            {
-                VerificationCode = code,
-                UserId = user.Id,
-                Email = user.Email,
-                Username = user.UserName
-            };
         }
 
         public void CreateMessageToAdmin(MessageToAdminDTO message)
@@ -146,7 +115,7 @@ namespace Maganizer_Project.BLL.Services
         {
             var messages = DataBase.Accounts.GetMessagesToAdmin().ToList();
 
-            if(messages.Count() != 0)
+            if (messages.Count() != 0)
             {
                 List<MessageToAdminDTO> messagesDTO = new List<MessageToAdminDTO>();
                 foreach (var x in messages)
@@ -159,7 +128,6 @@ namespace Maganizer_Project.BLL.Services
                         Username = x.ApplicationUser.UserName,
                         SentOn = x.SentOn
                     });
-                    
                 }
 
                 return messagesDTO;
